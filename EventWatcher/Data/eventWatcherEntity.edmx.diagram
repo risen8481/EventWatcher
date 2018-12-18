@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c117f1016660407ebdf2098bff4c310d" Name="Diagram1">
+        <EntityTypeShape EntityType="event_watcher_dbModel.descryptions" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="event_watcher_dbModel.events" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="event_watcher_dbModel.events_types" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="event_watcher_dbModel.locations" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="event_watcher_dbModel.SeatsStatus" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="event_watcher_dbModel.FK_events_details" ManuallyRouted="false" />
+        <AssociationConnector Association="event_watcher_dbModel.FK_events_eventsTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="event_watcher_dbModel.FK_events_locations" ManuallyRouted="false" />
+        <AssociationConnector Association="event_watcher_dbModel.FK_SeatsStatus_events" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

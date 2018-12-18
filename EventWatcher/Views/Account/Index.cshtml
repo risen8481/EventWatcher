@@ -1,0 +1,97 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div id="layer">
+        <div class="login-page">
+            <div class="form">
+                <form class="register-form">
+                    <input type="text" placeholder="name" />
+                    <input type="password" placeholder="password" />
+                    <input type="text" placeholder="email address" />
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form>
+                <form class="login-form" id="loginForm">
+                    <input type="text" name="username" placeholder="username" />
+                    <input type="password" name="password" placeholder="password" />
+                </form>
+                <button id="loginBtn">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    window.onload = function () {
+        document.getElementById("loginBtn").addEventListener("click", function () {
+
+            
+            CheckProcessingContetn();
+            
+        });
+    }
+
+    function gettoken() {
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        return token;
+    }
+
+    function getFormData($form) {
+        var unindexed_array = $form.serializeArray();
+        var indexed_array = {};
+
+        $.map(unindexed_array, function (n, i) {
+            indexed_array[n['name']] = n['value'];
+        });
+
+        return indexed_array;
+    }
+
+    function CheckProcessingContetn() {
+        var contentModel = 'application/x-www-form-urlencoded; charset=utf-8';
+        var formData = $("#loginForm");
+
+        var dat = getFormData(formData);
+     
+        $.ajax(
+            {
+                async: true,
+                url: '/Account/CheckUser',
+                type: "POST",
+                data: { user: dat},
+                contentType: contentModel,
+                datatype: "json"
+
+            }
+
+        ).done(function (response) {
+
+            if (response.result === "true") {
+              
+                window.location.href = '/Home/Index';
+            }
+
+            if (response.result === "false") {
+                //Show acception modal
+                //$("#categoryCreateModal").modal("show");
+                alert("Login or password not correct !!!");
+            }
+
+
+        }).fail(function (response) {
+            //alert(response.result);
+            console.log(response.result);
+        });
+
+
+
+    }
+</script>

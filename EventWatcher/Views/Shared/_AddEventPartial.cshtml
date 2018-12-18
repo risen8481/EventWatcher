@@ -1,0 +1,43 @@
+﻿@model EventWatcher.Models.EventsObjects
+@using System.Reflection
+<form id="eventAddForm">
+    <input type="hidden" name="EventType" value="@Model.EventType"/>
+    @{
+        if (Model != null)
+        {
+            Object eventModel = Model.EventObjectList.ElementAt(0);
+
+            Type t = eventModel.GetType();
+
+            PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var property in propInfos)
+            {
+                <div class="row" style="padding:5px">
+                    <div class="col-lg-3 col-md-3">
+                        <label>
+                            <b>@property.Name: </b>
+                        </label>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        @{
+                            if (property.Name == "EventDate")
+                            {
+                                <input class="form-control" style="width:100% !important" name="@property.Name" type="datetime-local" />
+                            }
+                            else
+                            {
+                                <input class="form-control" style="width:100% !important" name="@property.Name" type="text" />
+                            }
+
+                        }
+                    </div>
+                </div>
+            }
+        }
+
+    }
+</form>
+<script>
+  
+</script>
