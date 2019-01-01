@@ -8,4 +8,4 @@
 
 - W ustawieniach projektu można dla potrzeb własnych ustawić port na którym będzie funkcjonować mikrousługa
 
-GOOD LUCK !!!
+
